@@ -1,0 +1,114 @@
+[gd_scene load_steps=14 format=3 uid="uid://cd268a6tpv4gs"]
+
+[ext_resource type="Script" uid="uid://d05ldvfyohet1" path="res://Scripts/ennemies/ennemies.gd" id="1_4qw4g"]
+[ext_resource type="PackedScene" uid="uid://bfj1haeth151p" path="res://Scenes/Component/hit_box_component.tscn" id="2_hkvtc"]
+[ext_resource type="Script" uid="uid://u1bksjyvw7wp" path="res://Scripts/ennemies/health_component_ennemies.gd" id="3_hkvtc"]
+[ext_resource type="AudioStream" uid="uid://vve7g4fs7vot" path="res://Assets/SoundEffect/FootStepPlayer.mp3" id="4_kohhd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rtywj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kohhd"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.685733, 3.10443e-06, 5.77569e-07, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4qw4g"]
+material = SubResource("StandardMaterial3D_kohhd")
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwp8l"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m070k"]
+albedo_color = Color(0.605274, 0.605274, 0.605274, 1)
+
+[sub_resource type="Animation" id="Animation_kohhd"]
+resource_name = "Hit"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_iwp8l"), SubResource("StandardMaterial3D_m070k")]
+}
+
+[sub_resource type="Animation" id="Animation_iwp8l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m070k"]
+_data = {
+&"Hit": SubResource("Animation_kohhd"),
+&"RESET": SubResource("Animation_iwp8l")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4qw4g"]
+
+[node name="Node3D" type="CharacterBody3D" node_paths=PackedStringArray("hitbox") groups=["enemy"]]
+collision_layer = 33
+collision_mask = 33
+script = ExtResource("1_4qw4g")
+hitbox = NodePath("HitBoxComponent")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_rtywj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363733, -0.2)
+mesh = SubResource("CapsuleMesh_4qw4g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Model/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
+light_color = Color(1, 0, 0, 1)
+
+[node name="hit_anim" type="AnimationPlayer" parent="Model"]
+libraries = {
+&"": SubResource("AnimationLibrary_m070k")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_4qw4g")
+
+[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_hkvtc")]
+collision_layer = 33
+health_component = NodePath("../HealthCompoenentEnemies")
+
+[node name="HealthCompoenentEnemies" type="Node3D" parent="."]
+script = ExtResource("3_hkvtc")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="FootStep" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_kohhd")
+volume_db = -3.0
+unit_size = 5.5
+max_distance = 30.0
+max_polyphony = 24
+bus = &"SoundEffect"
+emission_angle_enabled = true
+doppler_tracking = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy5f12jj721k3"]
+
+[ext_resource type="Script" uid="uid://cc7ynpefb5np8" path="res://door.gd" id="1_w6aom"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6ijf"]
+size = Vector3(5, 2, 3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w6aom"]
+viewport_path = NodePath("Text Prompt")
+
+[node name="Door" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_w6aom")
+
+[node name="Model" type="CSGCylinder3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+use_collision = true
+radius = 2.0
+height = 7.864
+sides = 12
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 2)
+shape = SubResource("BoxShape3D_o6ijf")
+
+[node name="Text Prompt" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="Label" type="Label" parent="Text Prompt"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -89.5
+offset_right = 183.0
+offset_bottom = 89.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Press F to F 
+"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+visible = false
+texture = SubResource("ViewportTexture_w6aom")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

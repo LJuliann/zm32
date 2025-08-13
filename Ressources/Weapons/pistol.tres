@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="weapons_stats" load_steps=2 format=3 uid="uid://cjj5y6chuodwd"]
+
+[ext_resource type="Script" uid="uid://dkh0ueytm463o" path="res://Ressources/Weapons/weapons_stats.gd" id="1_jetes"]
+
+[resource]
+script = ExtResource("1_jetes")
+name = "pistol"
+damage = 40.0
+bulletSpeed = 1.0
+fireRate = 0.3
+delayBetweenShot = 2.0
+isAutomatic = true
+isHitScan = true
+clipSize = 8.0
+ammoSize = 16.0
+reloadSpeed = 3.0
+gunShotSound = "res://Assets/SoundEffect/pistol shot.mp3"
+gunReloadSound = "res://Assets/SoundEffect/reload.mp3"
+metadata/_custom_type_script = "uid://dkh0ueytm463o"

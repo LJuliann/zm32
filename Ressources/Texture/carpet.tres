@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://csjm4d07jshdc"]
+
+[ext_resource type="Texture2D" uid="uid://43an2qx6klu7" path="res://Assets/Texture/Carpet/Carpet016_2K-JPG/Carpet016_2K-JPG_Color.jpg" id="1_gas8x"]
+[ext_resource type="Texture2D" uid="uid://cswqywx1f7ata" path="res://Assets/Texture/Carpet/Carpet016_2K-JPG/Carpet016_2K-JPG_AmbientOcclusion.jpg" id="2_p1cdb"]
+[ext_resource type="Texture2D" uid="uid://kdvh4wiq8eur" path="res://Assets/Texture/Carpet/Carpet016_2K-JPG/Carpet016_2K-JPG_NormalGL.jpg" id="3_tmp35"]
+[ext_resource type="Texture2D" uid="uid://dprosa8lvq05u" path="res://Assets/Texture/Carpet/Carpet016_2K-JPG/Carpet016_2K-JPG_Roughness.jpg" id="4_lim7s"]
+
+[resource]
+albedo_color = Color(0.666667, 0.596078, 0.239216, 1)
+albedo_texture = ExtResource("1_gas8x")
+roughness_texture = ExtResource("4_lim7s")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("3_tmp35")
+ao_enabled = true
+ao_texture = ExtResource("2_p1cdb")
+uv1_scale = Vector3(5, 5, 5)

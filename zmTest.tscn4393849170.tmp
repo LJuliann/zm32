@@ -1,0 +1,127 @@
+[gd_scene load_steps=11 format=3 uid="uid://yqan5pkvqngo"]
+
+[ext_resource type="Script" uid="uid://ikpsjl4j6tfr" path="res://character_body_3d.gd" id="1_v8c5w"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_08v8o"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_m34gq"]
+[ext_resource type="PackedScene" uid="uid://cy5f12jj721k3" path="res://Scenes/door.tscn" id="4_m34gq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6ijf"]
+albedo_color = Color(0.332881, 0.332881, 0.332881, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_08v8o"]
+albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o6ijf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_08v8o"]
+
+[sub_resource type="Resource" id="Resource_w3m2m"]
+script = ExtResource("3_m34gq")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m34gq"]
+size = Vector3(50, 18, 26)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.666246, 0.745732, 0, -0.745732, 0.666246, 0.00917149, 5.27047, 2.51373)
+light_energy = 0.676
+shadow_enabled = true
+shadow_blur = 4.333
+
+[node name="Map" type="Node" parent="."]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 4, -4.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+collision_layer = 5
+size = Vector3(25, 8, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 4, -4.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+collision_layer = 5
+size = Vector3(16, 8, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 4, 1.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+size = Vector3(48, 8, 3)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, 4, 1.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+size = Vector3(48, 8, 3)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 4, 24.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+size = Vector3(48, 8, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 4, -23.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+size = Vector3(27, 8, 3)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, -23.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+size = Vector3(24, 8, 3)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(50, 2, 50)
+material = SubResource("StandardMaterial3D_08v8o")
+
+[node name="Character" type="Node" parent="."]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9)
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("1_v8c5w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character/CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_o6ijf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Character/CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_08v8o")
+
+[node name="PhantomCamera3D" type="Node3D" parent="Character" node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.584958, 0.811063, 0, -0.811063, 0.584958, 0, 6.81106, 13.585)
+script = ExtResource("2_08v8o")
+follow_mode = 6
+follow_target = NodePath("../CharacterBody3D")
+tween_resource = SubResource("Resource_w3m2m")
+follow_offset = Vector3(0, 5, 4)
+vertical_rotation_offset = 0.945968
+collision_mask = 2
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Camera3D" type="Camera3D" parent="Character/PhantomCamera3D"]
+
+[node name="Door" parent="." instance=ExtResource("4_m34gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 1)
+
+[node name="Spawn Zone" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="Spawn Zone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spawn Zone/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 8.5, 10.5)
+shape = SubResource("BoxShape3D_m34gq")
+
+[node name="Door2" parent="." instance=ExtResource("4_m34gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 13)

@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bfs3ajyf8mu6r"]
+
+[ext_resource type="Texture2D" uid="uid://bep0oqds0gwpu" path="res://Assets/Main Menu/Model/Floor/Plane_Plane_Bake1_PBR_Diffuse.png" id="1_powkx"]
+[ext_resource type="Texture2D" uid="uid://cj8fwft6og7il" path="res://Assets/Main Menu/Model/Floor/Plane_Plane_Bake1_PBR_Normal.png" id="2_hag3y"]
+[ext_resource type="Texture2D" uid="uid://d15rlcnpd467w" path="res://Assets/Main Menu/Model/Floor/Plane_Bake1_PBR_Roughness.png" id="3_ihgay"]
+
+[resource]
+albedo_texture = ExtResource("1_powkx")
+roughness_texture = ExtResource("3_ihgay")
+normal_enabled = true
+normal_texture = ExtResource("2_hag3y")
+uv1_scale = Vector3(1, 2, 1)

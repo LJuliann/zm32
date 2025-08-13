@@ -1,0 +1,274 @@
+[gd_scene load_steps=24 format=3 uid="uid://yqan5pkvqngo"]
+
+[ext_resource type="Script" uid="uid://cjr7uyconwvgu" path="res://game_manager.gd" id="1_64fsd"]
+[ext_resource type="PackedScene" uid="uid://b1yk188fwl1du" path="res://Scenes/Character/Character.tscn" id="1_t25oo"]
+[ext_resource type="PackedScene" uid="uid://otshgbh0pt74" path="res://Models/Table/Table.blend" id="2_5koch"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_08v8o"]
+[ext_resource type="Script" uid="uid://c5p63yvc00bka" path="res://Scripts/Hud/weapon_hud.gd" id="2_ah5ei"]
+[ext_resource type="Script" uid="uid://cuv1v3fu53ik0" path="res://Scripts/transparency.gd" id="2_obgsd"]
+[ext_resource type="PackedScene" uid="uid://cy5f12jj721k3" path="res://Scenes/door.tscn" id="4_m34gq"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_hbt1b"]
+[ext_resource type="PackedScene" uid="uid://cd268a6tpv4gs" path="res://Scenes/Character/Ennemies.tscn" id="6_t25oo"]
+[ext_resource type="PackedScene" uid="uid://nt6q0kfgm8d2" path="res://Scenes/Hud/ScoreBoard.tscn" id="7_ah5ei"]
+[ext_resource type="Shader" uid="uid://pr4t8ffk7n53" path="res://outline.gdshader" id="7_hbt1b"]
+[ext_resource type="PackedScene" uid="uid://xawl0wpg3osr" path="res://Scenes/Hud/points_hud.tscn" id="9_ywb7g"]
+[ext_resource type="Script" uid="uid://c7jsjpff21gaa" path="res://zomb_spawner.gd" id="11_hnj5g"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hbt1b"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_ah5ei"]
+sky_material = SubResource("ProceduralSkyMaterial_hbt1b")
+
+[sub_resource type="Environment" id="Environment_ywb7g"]
+background_mode = 2
+sky = SubResource("Sky_ah5ei")
+tonemap_mode = 2
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ywb7g"]
+vertices = PackedVector3Array(-24.5, 0.5, -24.5, -24.5, 0.5, -16.5, 24.5, 0.5, -16.5, 24.5, 0.5, -24.5, -22.5, 8.5, -13.4, -21.9, 8.5, -13.4, -22, 8.5, -15.5, -22.8, 8.5, -13.2, -25, 8.5, -15.5, -25, 8.5, -13.2, 22, 8.5, -13.4, 22.1, 8.5, -15.5, 22.6, 8.5, -13.4, 22.9, 8.5, -13.1, 24.9, 8.5, -13.3, 24.8, 8.5, -15.5, -24.5, 0.5, -15.4, -24.5, 0.5, -15, -22.1, 0.5, -14.9, 22.4, 0.5, -14, 24.5, 0.5, -14, 24.5, 0.5, -15.4, -21.9, 0.5, -14.6, 22, 0.5, -13.5, -21.9, 0.5, -13.5, -24.5, 0.5, -13.9, -24.5, 0.5, -13.5, -23, 0.5, -13.5, -23, 0.5, -13.9, 23, 8.5, -4, 25, 8.5, -4, -22.5, 8.5, -3.4, -15.4, 8.5, -3.5, -22.5, 8.5, -3.5, -22.8, 8.5, -3.7, -22.9, 8.5, -3, -25, 8.5, 23.3, -22.8, 8.5, 23.3, -24.5, 0.5, -3.5, -23.5, 0.5, -3.5, -23.5, 0.5, -4.1, -23, 0.5, -4.5, -23, 0.5, -12.4, -24.5, 0.5, -12.4, -15.4, 0.5, -4.5, -15.3, 0.5, -12.4, -21.9, 0.5, -12.4, -21.9, 0.5, -4.5, -14.5, 0.5, -4.3, -14.4, 0.5, -3.4, -12.3, 0.5, -3.4, -12.2, 0.5, -4.3, -11.9, 0.5, -4.5, -11.3, 0.5, -4.5, -11.4, 0.5, -12.4, -14.8, 0.5, -4.5, 22, 0.5, -4.5, 22, 0.5, -12.4, 23.5, 0.5, -4.3, 23.6, 0.5, -3.5, 24.5, 0.5, -3.5, 24.5, 0.5, -12.4, 23.1, 0.5, -12.4, 23.1, 0.5, -4.5, 22.6, 8.5, -3.5, -11.3, 8.25, -3.5, 22.6, 8.5, -3.4, 23, 8.5, -3, 25, 8.5, -2.2, 23, 8.5, -2.2, -23.5, 0.5, -2.8, -23, 0.5, -2.4, -24.5, 0.5, 22.5, -23, 0.5, 22.5, 23.6, 0.5, -2.8, 23.1, 0.5, -2.4, 23.1, 0.5, 22.5, 24.5, 0.5, 22.5, -12.2, 0.5, -2.6, -14.5, 0.5, -2.6, -15, 0.5, -2.4, -15, 0.5, 6.2, -11.4, 0.5, 6.2, -11.4, 0.5, -2.4, -21.9, 0.5, 7.4, -15.5, 0.5, 7.4, -15.5, 0.5, 6.6, -21.9, 0.5, -2.4, 3.9, 0.5, 2.7, 4.5, 0.5, 2.7, 4.4, 0.5, -2.4, 3.5, 0.5, 3.1, -10.6, 0.5, 6.4, -10.5, 0.5, 7.4, 3.5, 0.5, 7.4, 7.5, 0.5, 2.7, 7.6, 0.5, -2.4, 8.1, 0.5, 2.7, 8.1, 0.5, 17.3, 7.3, 0.5, 17.3, 7.3, 0.5, 22.5, 8.5, 0.5, 3.1, 22, 0.5, -2.4, 8.5, 0.5, 16.9, 22, 0.5, 22.5, 23, 8.5, 22.3, 25, 8.5, 22.3, 4.5, 1.5, 3.7, 4.5, 1.5, 16.3, 7.5, 1.5, 16.3, 7.5, 1.5, 3.7, -14.5, 1.5, 7.2, -14.5, 1.5, 12.8, -11.5, 1.5, 12.8, -11.5, 1.5, 7.2, -21.9, 0.5, 12.6, -15.5, 0.5, 12.6, -10.5, 0.5, 12.6, 3.5, 0.5, 12.6, -15.4, 0.5, 13.6, -15.1, 0.5, 13.8, -21.9, 0.5, 22.5, -14.6, 0.5, 22.5, -14.5, 0.5, 13.8, 4.7, 0.5, 22.5, 4.7, 0.5, 17.3, 3.9, 0.5, 17.3, 3.5, 0.5, 16.9, -10.6, 0.5, 13.6, -11.4, 0.5, 22.5, -10.9, 0.5, 13.8, -11.5, 0.5, 13.8, 23, 8.5, 23.1, 22.8, 8.5, 23.4, 21.8, 8.5, 23.5, 21.8, 8.5, 25.5, 25, 8.5, 25.5, -21.7, 8.5, 25.5, -21.7, 8.5, 23.5, -22.5, 8.5, 23.5, -25, 8.5, 25.5, -24.5, 0.5, 23.6, -24.5, 0.5, 24.5, -23, 0.5, 24.5, -23, 0.5, 23.6, -21.9, 0.5, 23.6, -21.9, 0.5, 24.5, 22, 0.5, 24.5, 22, 0.5, 23.6, 23.1, 0.5, 23.6, 23.1, 0.5, 24.5, 24.5, 0.5, 24.5, 24.5, 0.5, 23.6)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(4, 7, 6), PackedInt32Array(6, 7, 9), PackedInt32Array(6, 9, 8), PackedInt32Array(5, 6, 10), PackedInt32Array(10, 6, 11), PackedInt32Array(12, 10, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 11), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(19, 16, 20), PackedInt32Array(20, 16, 21), PackedInt32Array(22, 18, 23), PackedInt32Array(23, 18, 19), PackedInt32Array(23, 24, 22), PackedInt32Array(28, 27, 25), PackedInt32Array(25, 27, 26), PackedInt32Array(29, 13, 30), PackedInt32Array(30, 13, 14), PackedInt32Array(33, 32, 31), PackedInt32Array(33, 31, 34), PackedInt32Array(34, 31, 35), PackedInt32Array(37, 36, 35), PackedInt32Array(35, 36, 9), PackedInt32Array(34, 35, 7), PackedInt32Array(7, 35, 9), PackedInt32Array(40, 39, 38), PackedInt32Array(40, 38, 41), PackedInt32Array(41, 38, 42), PackedInt32Array(42, 38, 43), PackedInt32Array(47, 46, 44), PackedInt32Array(44, 46, 45), PackedInt32Array(49, 48, 50), PackedInt32Array(50, 48, 51), PackedInt32Array(53, 52, 54), PackedInt32Array(48, 55, 51), PackedInt32Array(51, 55, 52), PackedInt32Array(52, 55, 45), PackedInt32Array(52, 45, 54), PackedInt32Array(44, 45, 55), PackedInt32Array(56, 53, 57), PackedInt32Array(57, 53, 54), PackedInt32Array(59, 58, 60), PackedInt32Array(60, 58, 61), PackedInt32Array(63, 62, 58), PackedInt32Array(58, 62, 61), PackedInt32Array(64, 66, 65), PackedInt32Array(66, 64, 67), PackedInt32Array(67, 64, 29), PackedInt32Array(67, 29, 30), PackedInt32Array(67, 30, 68), PackedInt32Array(68, 69, 67), PackedInt32Array(38, 39, 70), PackedInt32Array(70, 71, 38), PackedInt32Array(38, 71, 73), PackedInt32Array(38, 73, 72), PackedInt32Array(74, 59, 60), PackedInt32Array(74, 60, 75), PackedInt32Array(75, 60, 76), PackedInt32Array(76, 60, 77), PackedInt32Array(50, 78, 49), PackedInt32Array(49, 78, 79), PackedInt32Array(79, 78, 80), PackedInt32Array(80, 78, 83), PackedInt32Array(80, 83, 82), PackedInt32Array(80, 82, 81), PackedInt32Array(86, 85, 84), PackedInt32Array(86, 84, 81), PackedInt32Array(81, 84, 80), PackedInt32Array(80, 84, 87), PackedInt32Array(90, 89, 88), PackedInt32Array(88, 91, 90), PackedInt32Array(90, 91, 83), PackedInt32Array(83, 91, 92), PackedInt32Array(92, 91, 93), PackedInt32Array(92, 82, 83), PackedInt32Array(91, 94, 93), PackedInt32Array(89, 90, 95), PackedInt32Array(95, 90, 96), PackedInt32Array(97, 95, 96), PackedInt32Array(100, 99, 98), PackedInt32Array(97, 96, 101), PackedInt32Array(101, 96, 102), PackedInt32Array(98, 103, 100), PackedInt32Array(100, 103, 104), PackedInt32Array(101, 102, 103), PackedInt32Array(103, 102, 104), PackedInt32Array(69, 68, 105), PackedInt32Array(105, 68, 106), PackedInt32Array(110, 109, 107), PackedInt32Array(107, 109, 108), PackedInt32Array(114, 113, 111), PackedInt32Array(111, 113, 112), PackedInt32Array(84, 85, 115), PackedInt32Array(115, 85, 116), PackedInt32Array(93, 94, 117), PackedInt32Array(117, 94, 118), PackedInt32Array(115, 116, 119), PackedInt32Array(119, 120, 115), PackedInt32Array(115, 120, 121), PackedInt32Array(121, 120, 122), PackedInt32Array(120, 123, 122), PackedInt32Array(126, 125, 124), PackedInt32Array(126, 124, 127), PackedInt32Array(127, 124, 129), PackedInt32Array(127, 129, 128), PackedInt32Array(127, 128, 117), PackedInt32Array(129, 131, 130), PackedInt32Array(129, 130, 128), PackedInt32Array(117, 118, 127), PackedInt32Array(123, 131, 122), PackedInt32Array(122, 131, 129), PackedInt32Array(125, 99, 124), PackedInt32Array(124, 99, 100), PackedInt32Array(132, 105, 106), PackedInt32Array(135, 134, 133), PackedInt32Array(132, 106, 133), PackedInt32Array(133, 106, 136), PackedInt32Array(133, 136, 135), PackedInt32Array(139, 138, 137), PackedInt32Array(139, 137, 37), PackedInt32Array(37, 137, 36), PackedInt32Array(36, 137, 140), PackedInt32Array(138, 134, 137), PackedInt32Array(137, 134, 135), PackedInt32Array(144, 143, 141), PackedInt32Array(141, 143, 142), PackedInt32Array(148, 147, 145), PackedInt32Array(145, 147, 146), PackedInt32Array(152, 151, 149), PackedInt32Array(149, 151, 150)]
+cell_size = 0.1
+region_min_size = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6ijf"]
+albedo_color = Color(0.808998, 0.808998, 0.808998, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_08v8o"]
+albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m34gq"]
+size = Vector3(50, 18, 26)
+
+[sub_resource type="Resource" id="Resource_ah5ei"]
+script = ExtResource("6_hbt1b")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbt1b"]
+render_priority = 0
+shader = ExtResource("7_hbt1b")
+shader_parameter/disable_shader = false
+shader_parameter/MAX_DEPTH = 1000.0
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.4
+shader_parameter/highlight_strength = 0.1
+shader_parameter/highlight_color = Color(0.45, 0.45, 0.45, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/pixelSize = 4
+
+[sub_resource type="QuadMesh" id="QuadMesh_hbt1b"]
+material = SubResource("ShaderMaterial_hbt1b")
+flip_faces = true
+size = Vector2(2, 2)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_64fsd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ywb7g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.666246, 0.745732, 0, -0.745732, 0.666246, 0.00917149, 5.27047, 2.51373)
+shadow_enabled = true
+shadow_blur = 4.333
+directional_shadow_split_1 = 0.161
+directional_shadow_split_2 = 0.331
+directional_shadow_split_3 = 0.278
+
+[node name="Map" type="Node3D" parent="." node_paths=PackedStringArray("camera", "wall_array")]
+script = ExtResource("2_obgsd")
+camera = NodePath("../Character/Player")
+wall_array = [NodePath("NavigationRegion3D/CSGBox3D2"), NodePath("NavigationRegion3D/CSGBox3D5")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Map"]
+navigation_mesh = SubResource("NavigationMesh_ywb7g")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6, 3.9, -3.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+collision_layer = 5
+size = Vector3(34.8, 8, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 4, -3.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+collision_layer = 5
+size = Vector3(8, 8, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 4, 5.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+size = Vector3(40, 8, 3)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, 4, 6)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+size = Vector3(39, 8, 3)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 4, 24.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+size = Vector3(51, 8, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 4, -14.5)
+material_override = SubResource("StandardMaterial3D_o6ijf")
+use_collision = true
+size = Vector3(50.8, 8, 3)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(50, 2, 50)
+material = SubResource("StandardMaterial3D_08v8o")
+
+[node name="Table" parent="Map/NavigationRegion3D" instance=ExtResource("2_5koch")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, 1, 10)
+
+[node name="Table2" parent="Map/NavigationRegion3D" instance=ExtResource("2_5koch")]
+transform = Transform3D(-9.17939e-08, 0, -1, 0, 1, 0, 2.1, 0, -4.37114e-08, 6, 1, 10)
+
+[node name="Character" type="Node" parent="."]
+
+[node name="Player" parent="Character" instance=ExtResource("1_t25oo")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 9)
+
+[node name="WeaponHud" type="Control" parent="Character"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("2_ah5ei")
+
+[node name="Panel" type="Panel" parent="Character/WeaponHud"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -262.0
+offset_right = -99.0
+offset_bottom = -119.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ClipSize" type="Label" parent="Character/WeaponHud/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -33.5
+offset_right = 78.0
+offset_bottom = 54.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "32"
+
+[node name="AmmoSize" type="Label" parent="Character/WeaponHud/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 90.0
+offset_top = -9.5
+offset_right = 188.0
+offset_bottom = 78.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "/32"
+
+[node name="Weapon Name" type="Label" parent="Character/WeaponHud/Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 9.0
+offset_right = 232.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 28
+text = "WEAPON NAME "
+
+[node name="Door" parent="." instance=ExtResource("4_m34gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, -0.2)
+
+[node name="ZoneManager" type="Node3D" parent="."]
+
+[node name="SpawnZone" type="Node3D" parent="ZoneManager"]
+
+[node name="Area3D" type="Area3D" parent="ZoneManager/SpawnZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneManager/SpawnZone/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 8.5, 10.5)
+shape = SubResource("BoxShape3D_m34gq")
+
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "look_at_target")]
+transform = Transform3D(1, 0, 0, 0, 0.384615, 0.923076, 0, -0.923076, 0.384615, 1, 13, 14)
+top_level = true
+script = ExtResource("2_08v8o")
+follow_mode = 2
+follow_target = NodePath("../Character/Player")
+look_at_mode = 2
+look_at_target = NodePath("../Character/Player")
+tween_resource = SubResource("Resource_ah5ei")
+follow_offset = Vector3(0, 12, 5)
+follow_axis_lock = 5
+follow_distance = 2.0
+vertical_rotation_offset = 0.404916
+spring_length = 2.0
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Camera3D" type="Camera3D" parent="PhantomCamera3D"]
+unique_name_in_owner = true
+physics_interpolation_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PhantomCamera3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999859, -0.0168201, 0, 0.0168201, 0.999859, 0, -0.0284991, -0.629486)
+mesh = SubResource("QuadMesh_hbt1b")
+skeleton = NodePath("../../..")
+
+[node name="HUD" type="Node" parent="."]
+
+[node name="Hud" parent="HUD" instance=ExtResource("7_ah5ei")]
+visible = false
+
+[node name="Points" parent="HUD" instance=ExtResource("9_ywb7g")]
+
+[node name="Rounds" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Zomb_Spawner" type="Node3D" parent="."]
+script = ExtResource("11_hnj5g")
+mob = ExtResource("6_t25oo")
+
+[node name="Marker3D" type="Marker3D" parent="Zomb_Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+
+[node name="Timer" type="Timer" parent="Zomb_Spawner"]
+autostart = true
+
+[connection signal="timeout" from="Zomb_Spawner/Timer" to="Zomb_Spawner" method="_on_timer_timeout"]

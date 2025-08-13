@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://cy5f12jj721k3"]
+
+[ext_resource type="Script" uid="uid://cc7ynpefb5np8" path="res://door.gd" id="1_w6aom"]
+[ext_resource type="PackedScene" uid="uid://nat8oh24520l" path="res://Models/Debris/Door.blend" id="2_p0e35"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6ijf"]
+size = Vector3(5, 2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p0e35"]
+size = Vector3(0.559277, 5, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6aom"]
+albedo_color = Color(0, 0, 0, 0.803922)
+
+[sub_resource type="QuadMesh" id="QuadMesh_p0e35"]
+material = SubResource("StandardMaterial3D_w6aom")
+size = Vector2(7, 1)
+
+[node name="Door" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("interaction_area", "text_to_show", "text_outline")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_w6aom")
+interaction_area = NodePath(".")
+text_to_show = NodePath("../MeshInstance3D/Label3D")
+text_outline = NodePath("../MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 2)
+shape = SubResource("BoxShape3D_o6ijf")
+
+[node name="Door" parent="Area3D" instance=ExtResource("2_p0e35")]
+transform = Transform3D(-4.37114e-08, 0, -1.2, 0, 1.08, 0, 1, 0, -5.24537e-08, 0, -1.4, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Area3D/Door"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D/Door/RigidBody3D"]
+transform = Transform3D(0.999966, 0, 2.01084e-12, 0, 1, 0, 4.29878e-13, 0, 1, 0.229635, 0, 4.9738e-14)
+shape = SubResource("BoxShape3D_p0e35")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.4, -1.5)
+visible = false
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("QuadMesh_p0e35")
+skeleton = NodePath("")
+
+[node name="Label3D" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.0707107, 0.0707105)
+pixel_size = 0.012
+text = "Press [F] To Buy Door 500$"
+
+[node name="Area3D2" type="Area3D" parent="."]
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
