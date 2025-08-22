@@ -32,17 +32,19 @@ mesh = SubResource("CapsuleMesh_08v8o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.447888, -0.1)
 mesh = SubResource("SphereMesh_w3m2m")
 
-[node name="Gun" parent="." instance=ExtResource("2_1cd2p")]
+[node name="Gun" parent="MeshInstance3D" instance=ExtResource("2_1cd2p")]
 transform = Transform3D(-1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, 0, 0, -1)
 
-[node name="mele" type="Node3D" parent="."]
+[node name="mele" type="Node3D" parent="MeshInstance3D/Gun"]
+transform = Transform3D(-1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 5.96046e-08, 0, -1)
 script = ExtResource("3_1cd2p")
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="mele"]
+[node name="ShapeCast3D" type="ShapeCast3D" parent="MeshInstance3D/Gun/mele"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_h5fps")
 
-[node name="mele_ray_cast" type="RayCast3D" parent="mele/ShapeCast3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1, -1.7)
-target_position = Vector3(0, -1.885, 0)
+[node name="mele_ray_cast" type="RayCast3D" parent="MeshInstance3D/Gun/mele/ShapeCast3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1, 0.3)
+target_position = Vector3(0, -2.91, 0)
+collision_mask = 33
 debug_shape_custom_color = Color(1, 0.505369, 0.733621, 1)

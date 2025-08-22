@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cbp8v6y0dhlfb"]
+[gd_scene load_steps=41 format=3 uid="uid://cbp8v6y0dhlfb"]
 
 [ext_resource type="PackedScene" uid="uid://byb8pfwi6425d" path="res://Assets/Main Menu/Model/SimpleBake_Bakes/Cube.002.glb" id="1_i5qic"]
 [ext_resource type="Script" uid="uid://dm823q5kvijaj" path="res://Scripts/MainMenu/Video.gd" id="1_wfgb2"]
@@ -293,6 +293,15 @@ viewport_path = NodePath("Anim/Boot Video/SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_wlsky"]
 viewport_path = NodePath("Main Menu/Sprite3D/MainMenu")
 
+[sub_resource type="SystemFont" id="SystemFont_ht6vt"]
+font_names = PackedStringArray("Rocket Command")
+
+[sub_resource type="SystemFont" id="SystemFont_6viy2"]
+font_names = PackedStringArray("Rocket Command")
+
+[sub_resource type="SystemFont" id="SystemFont_4gws7"]
+font_names = PackedStringArray("Rocket Command")
+
 [node name="Main Menu" type="Node3D"]
 script = ExtResource("1_wfgb2")
 
@@ -510,18 +519,24 @@ grow_vertical = 2
 
 [node name="Play" type="Button" parent="Main Menu/Sprite3D/MainMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_ht6vt")
 theme_override_font_sizes/font_size = 64
 text = "Play"
 
 [node name="Settings" type="Button" parent="Main Menu/Sprite3D/MainMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_6viy2")
 theme_override_font_sizes/font_size = 64
 text = "Settings"
 
 [node name="Quit" type="Button" parent="Main Menu/Sprite3D/MainMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_4gws7")
 theme_override_font_sizes/font_size = 64
 text = "Quit"
+
+[node name="3D Label" type="Node3D" parent="Main Menu"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.24203, -8.413)
 
 [connection signal="finished" from="Anim/Boot Video/SubViewport/VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
 [connection signal="pressed" from="Main Menu/Sprite3D/MainMenu/VBoxContainer/Quit" to="Main Menu" method="_on_quit_pressed"]

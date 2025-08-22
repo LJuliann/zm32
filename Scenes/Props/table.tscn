@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm5empaxta33f"]
+
+[ext_resource type="PackedScene" uid="uid://civ5uxuh1c8e8" path="res://Models/Table/Table 1/Table.glb" id="1_cgfk6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cgfk6"]
+size = Vector3(8.79614, 1.26709, 4.86597)
+
+[node name="Table" instance=ExtResource("1_cgfk6")]
+
+[node name="Table_Baked" parent="." index="0"]
+lod_bias = 4.824
+gi_mode = 2
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446411, -0.133545, -0.114136)
+shape = SubResource("BoxShape3D_cgfk6")

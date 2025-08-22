@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://db3etajdmqf0e"]
+
+[ext_resource type="Script" uid="uid://cui8pd1ibgbp8" path="res://Scripts/Hud/rounds.gd" id="1_de7dh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjo6k"]
+
+[sub_resource type="SystemFont" id="SystemFont_2ytjt"]
+font_italic = true
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_sahhv"]
+font = SubResource("SystemFont_2ytjt")
+font_size = 128
+font_color = Color(1, 0, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Rounds" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -202.0
+offset_right = 502.0
+grow_vertical = 0
+script = ExtResource("1_de7dh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 92.0
+offset_right = -220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bjo6k")
+
+[node name="Round_Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -58.0
+offset_right = -73.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_sahhv")

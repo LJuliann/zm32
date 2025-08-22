@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bp6px3yydu50x"]
+
+[ext_resource type="Texture2D" uid="uid://b6gl5f4em685i" path="res://Assets/Texture/Dry WAll/DryWall_Bake1_PBR_Diffuse.png" id="1_0mh7n"]
+[ext_resource type="Texture2D" uid="uid://dsdqxseh4acoh" path="res://Assets/Texture/Dry WAll/DryWall_Bake1_PBR_Normal.png" id="2_vvg78"]
+[ext_resource type="Texture2D" uid="uid://dhatpl4nhajjb" path="res://Assets/Texture/Dry WAll/DryWall_Bake1_PBR_Roughness.png" id="3_jh7q5"]
+
+[resource]
+albedo_color = Color(7.47531e-07, 0.150962, 0.0362649, 1)
+albedo_texture = ExtResource("1_0mh7n")
+roughness_texture = ExtResource("3_jh7q5")
+normal_enabled = true
+normal_texture = ExtResource("2_vvg78")
+uv1_scale = Vector3(20, 20, 1)

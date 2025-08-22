@@ -115,8 +115,7 @@ max_polyphony = 5
 bus = &"SoundEffect"
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.505304)
-visible = false
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.655144)
 target_position = Vector3(0, -20, 0)
 collision_mask = 33
 debug_shape_custom_color = Color(5.19812e-06, 0.732542, 0.846938, 1)

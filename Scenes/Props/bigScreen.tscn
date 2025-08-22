@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://bv71n1ea3tw2l"]
+
+[ext_resource type="PackedScene" uid="uid://c2d6hyebkqg2i" path="res://Models/Props/Big Screen/Tv.glb" id="1_x4jnp"]
+[ext_resource type="VideoStream" uid="uid://yfm8vv1rp66" path="res://Assets/Video/White Bear.ogv" id="2_j810o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x4jnp"]
+size = Vector3(1.6, 6.5, 4)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_j810o"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_du0sm"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pdwsx"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_du0sm"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_j810o")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_pdwsx")
+ao_enabled = true
+ao_texture = SubResource("ViewportTexture_du0sm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pdwsx"]
+size = Vector2(2.095, 1)
+
+[node name="Tv" instance=ExtResource("1_x4jnp")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 3.5, 0.2)
+shape = SubResource("BoxShape3D_x4jnp")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 3.5, -3.8)
+shape = SubResource("BoxShape3D_x4jnp")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 3.65, 3.7)
+shape = SubResource("BoxShape3D_x4jnp")
+
+[node name="SubViewport" type="SubViewport" parent="." index="2"]
+unique_name_in_owner = true
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_j810o")
+autoplay = true
+loop = true
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport" index="1"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(0.257619, 0, 0.984808, 0, 2.58, 0, -1.46103, 0, 0.173648, 0.867548, 5.20731, -3.62207)
+material_override = SubResource("StandardMaterial3D_du0sm")
+mesh = SubResource("QuadMesh_pdwsx")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="4"]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0, 2, 0)

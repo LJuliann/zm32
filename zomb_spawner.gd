@@ -1,8 +1,8 @@
 extends Node3D
+class_name zombie_spawner
 
 @export var mob : PackedScene
-var number_zombies_max = 1
-var number_of_zombies_in_scene = 0
+
 @onready var spawn_location: Marker3D = $Marker3D
 @onready var barricade: Node3D = $Barricade
 @export var is_barricade:bool = true
@@ -16,16 +16,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _spawn_zombies(): 
+func spawn_zombies(): 
 	var zombies = mob.instantiate()
 	zombies.is_barricade = is_barricade
 	zombies.position = spawn_location.position
 	zombies.barricade_position = barricade
 	add_child(zombies)
 	
-
-
-func _on_timer_timeout() -> void:
-	if number_zombies_max >= number_of_zombies_in_scene:
-		_spawn_zombies()
-		number_of_zombies_in_scene += 1 
+	

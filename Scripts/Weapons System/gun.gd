@@ -39,6 +39,8 @@ var min_before_hud = 4
 #const BULLET = preload("res://Scenes/Weapons/bullet.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Messanger.cooldown.connect(cooldown)
+	
 	weapon_slot = 0
 	
 	var weapon1 = weapons_stats.new()
@@ -104,31 +106,32 @@ func timerRate():
 	canShoot = true 
 
 func _reload():
-	if(current_weapon.clipSize != stats.get(weapon_slot).clipSize ):
-		if (current_weapon.ammoSize > 0 ):
-			AudioManager.play("res://Assets/SoundEffect/reload.mp3")
-			var bullet_needed_clip = stats.get(weapon_slot).clipSize - current_weapon.clipSize
-
-			if bullet_needed_clip >= current_weapon.ammoSize:
-				canShoot = false
-				Messanger.circle_fill.emit(current_weapon.reloadSpeed)
+	if canReload:
+		if(current_weapon.clipSize != stats.get(weapon_slot).clipSize ):
+			if (current_weapon.ammoSize > 0 ):
+				AudioManager.play("res://Assets/SoundEffect/reload.mp3")
+				var bullet_needed_clip = stats.get(weapon_slot).clipSize - current_weapon.clipSize
+	
+				if bullet_needed_clip >= current_weapon.ammoSize:
+					canShoot = false
+					Messanger.circle_fill.emit(current_weapon.reloadSpeed)
+					#gun_sound_effect.stream = current_weapon.gunShotSound
+					await get_tree().create_timer(current_weapon.reloadSpeed).timeout
+					current_weapon.clipSize = current_weapon.ammoSize
+					current_weapon.ammoSize -= bullet_needed_clip
+					canShoot = true
+				
+				else:
+					canShoot = false
 				#gun_sound_effect.stream = current_weapon.gunShotSound
-				await get_tree().create_timer(current_weapon.reloadSpeed).timeout
-				current_weapon.clipSize = current_weapon.ammoSize
-				current_weapon.ammoSize -= bullet_needed_clip
-				canShoot = true
-			
-			else:
-				canShoot = false
-			#gun_sound_effect.stream = current_weapon.gunShotSound
-				Messanger.circle_fill.emit(current_weapon.reloadSpeed)
-				await get_tree().create_timer(current_weapon.reloadSpeed).timeout
-				current_weapon.clipSize += bullet_needed_clip	
-				current_weapon.ammoSize -= bullet_needed_clip
-				canShoot = true
-			
-		if current_weapon.ammoSize < 0:
-			current_weapon.ammoSize = 0
+					Messanger.circle_fill.emit(current_weapon.reloadSpeed)
+					await get_tree().create_timer(current_weapon.reloadSpeed).timeout
+					current_weapon.clipSize += bullet_needed_clip	
+					current_weapon.ammoSize -= bullet_needed_clip
+					canShoot = true
+				
+			if current_weapon.ammoSize < 0:
+				current_weapon.ammoSize = 0
 				
 		can_shoot()	
 
@@ -167,4 +170,12 @@ func can_shoot():
 	else:
 		canShoot = true
 			
+func cooldown(cooldown_time): 
+	var temp_reload = canReload
+	var temp_shoot = canShoot
+	canReload = false
+	canShoot = false
+	await get_tree().create_timer(cooldown_time).timeout
+	canReload = temp_reload
+	canShoot = temp_shoot
 	

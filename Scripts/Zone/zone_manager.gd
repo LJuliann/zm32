@@ -1,11 +1,67 @@
 extends Node3D
 @export var zone:Array[zone]
 
+var main_zone
+var max_enemies_per_hoard = 32
+var max_enemies_per_round = 10
+var spawn_delay = 2
+var enemies_alive = 0 
+var total_enemies = 0
+var is_round_pause = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	Messanger.ennemie_dead.connect(zomb_dead)
+	
+	max_enemies_per_hoard = GameManager.max_enemies_per_hoard
+	max_enemies_per_round = GameManager.max_enemies_per_round
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	check_end_round()
+
+func _on_zone_body_entered(body: Node3D, extra_arg_0: String) -> void:
+	for i in zone:
+		if i.name == extra_arg_0:
+			main_zone = i
+			if	i.has_method("spawn_zombie"):
+			#	i.is_active = true
+				print(i.name)
+				if max_enemies_per_round >= 0:
+					pass 
+					#i.spawn_zombie(i.name)
+			else:
+				pass
+				
+func GameRule(): 
+	if ! is_round_pause:	
+		if enemies_alive < max_enemies_per_hoard:
+			if total_enemies < max_enemies_per_round:
+				main_zone.spawn_zombie("test")
+				enemies_alive += 1
+				total_enemies += 1 
+				print(total_enemies)
+
+func _on_spawn_timer_timeout() -> void:
+	
+		GameRule()
+
+func zomb_dead():
+	enemies_alive -= 1 
+
+func check_end_round(): 
+	if ! is_round_pause:		
+		if total_enemies == max_enemies_per_round:
+			if enemies_alive == 0:
+				print("end Round")
+				change_round()
+				is_round_pause = true
+
+func change_round(): 
+	GameManager.round += 1
+	max_enemies_per_round += 1 
+	total_enemies = 0
+	Messanger.round.emit()
+	print(GameManager.round)
+	await get_tree().create_timer(GameManager.delay_between_round).timeout
+	is_round_pause = false

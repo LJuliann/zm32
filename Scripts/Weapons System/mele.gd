@@ -20,11 +20,13 @@ func _process(delta: float) -> void:
 
 func _mele_attack():
 	if can_mele:	
+		_cool_down()
+		Messanger.cooldown.emit(cooldown)
 		if mele_ray_cast.is_colliding():
 			if mele_ray_cast.get_collider().has_method("damage"):
 				mele_ray_cast.get_collider().damage(100)
 				Messanger.REMOVE_POINTS.emit(points_made)
-				_cool_down()
+				
 				
 func _cool_down():
 	Messanger.circle_fill.emit(cooldown)

@@ -11,6 +11,7 @@ const Cursor2 = preload("res://Assets/Cursor/cursor 2.png")
 
 @onready var cam: Camera3D = %Camera3D
 
+
 var RAY_LENGTH = 2000
 
 func _ready() -> void:
@@ -27,7 +28,8 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	movement()	
-	look_at(ScreenPointToRay(),Vector3.UP)
+	model.look_at(ScreenPointToRay(),Vector3.UP)
+	model.rotation.x = clampf(rotation.x,deg_to_rad(1),deg_to_rad(1))
 	rotation.x = clampf(rotation.x,deg_to_rad(1),deg_to_rad(1))
 
 	cursor_animation()
