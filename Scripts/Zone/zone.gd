@@ -18,5 +18,6 @@ func _process(delta: float) -> void:
 func spawn_zombie(asd):
 	if is_active:
 		if zomb_spawn != null:	
-			zomb_spawn.get(0).spawn_zombies()
-			#print(zomb_spawn)
+			var zomb_spawner_random_number = (randi_range(0,zomb_spawn.size() - 1))
+			zomb_spawn.get(zomb_spawner_random_number).spawn_zombies()
+			

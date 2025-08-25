@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cbp8v6y0dhlfb"]
+[gd_scene load_steps=42 format=3 uid="uid://cbp8v6y0dhlfb"]
 
 [ext_resource type="PackedScene" uid="uid://byb8pfwi6425d" path="res://Assets/Main Menu/Model/SimpleBake_Bakes/Cube.002.glb" id="1_i5qic"]
 [ext_resource type="Script" uid="uid://dm823q5kvijaj" path="res://Scripts/MainMenu/Video.gd" id="1_wfgb2"]
@@ -7,9 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://rvirornep4or" path="res://Assets/Smoke/T_smoke_flipbook.png" id="4_12kdf"]
 [ext_resource type="VideoStream" uid="uid://c34ehyjgui5n1" path="res://Assets/Main Menu/vapo.ogv" id="5_xwd2w"]
 [ext_resource type="VideoStream" uid="uid://corpqev2o3t3t" path="res://Assets/Main Menu/Boot.ogv" id="7_wlsky"]
-[ext_resource type="PackedScene" uid="uid://cg54omsyghm1k" path="res://Scenes/Main Menu/Main Menu Control.tscn" id="9_4gws7"]
+[ext_resource type="Script" uid="uid://cc6y42xdw46oo" path="res://Scripts/MainMenu/main_menu.gd" id="8_ht6vt"]
 [ext_resource type="AudioStream" uid="uid://dfqo20cpf4hsu" path="res://Assets/SoundEffect/Main Menu/SynthWave.wav" id="9_bcalf"]
-[ext_resource type="Shader" uid="uid://6sbnvfn2oduf" path="res://Shader/CRT.gdshader" id="10_6viy2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wfgb2"]
 viewport_path = NodePath("Node/SubViewport")
@@ -63,14 +62,12 @@ anim_speed_max = 1.0
 
 [sub_resource type="SystemFont" id="SystemFont_12kdf"]
 font_names = PackedStringArray("Rocket Command Gradient")
-subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_xwd2w"]
-font_names = PackedStringArray("Rocket Command")
-subpixel_positioning = 0
+font_names = PackedStringArray("Rocket Command Gradient")
 
 [sub_resource type="Gradient" id="Gradient_wfgb2"]
-colors = PackedColorArray(0.403904, 0.235389, 1, 1, 0.73796, 0.690175, 1, 1)
+colors = PackedColorArray(0.734867, 0.000112337, 0.625699, 1, 1, 0.529412, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wlsky"]
 gradient = SubResource("Gradient_wfgb2")
@@ -79,6 +76,7 @@ fill_to = Vector2(0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ht6vt"]
 albedo_texture = SubResource("GradientTexture2D_wlsky")
 emission_enabled = true
+emission = Color(0.702414, 0.00469775, 0.820303, 1)
 emission_energy_multiplier = 2.0
 emission_texture = SubResource("GradientTexture2D_wlsky")
 
@@ -87,7 +85,7 @@ material = SubResource("StandardMaterial3D_ht6vt")
 text = "Start New Game "
 font = SubResource("SystemFont_xwd2w")
 font_size = 21
-depth = 0.1
+depth = 0.386
 
 [sub_resource type="Animation" id="Animation_xwd2w"]
 resource_name = "Blink"
@@ -176,9 +174,6 @@ _data = {
 }
 
 [sub_resource type="FontFile" id="FontFile_12kdf"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -196,20 +191,17 @@ font_size = 24
 
 [sub_resource type="SystemFont" id="SystemFont_wfgb2"]
 font_names = PackedStringArray("Rocket Command Gradient")
-subpixel_positioning = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6viy2"]
-albedo_texture = SubResource("GradientTexture2D_wlsky")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlsky"]
+albedo_color = Color(0.352941, 0, 0.666667, 1)
 emission_enabled = true
-emission_energy_multiplier = 1.3
-emission_texture = SubResource("GradientTexture2D_wlsky")
+emission = Color(0.442501, 1.26343e-06, 2.40654e-08, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_ht6vt"]
-material = SubResource("StandardMaterial3D_6viy2")
-text = "Game 
-Name"
+material = SubResource("StandardMaterial3D_wlsky")
+text = "ZM32"
 font = SubResource("SystemFont_wfgb2")
-font_size = 32
+font_size = 42
 
 [sub_resource type="Animation" id="Animation_wlsky"]
 resource_name = "Move_Camera"
@@ -224,7 +216,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.00305344, 3.67193, -3.89036), Vector3(0.087, 3.837, -7.005)]
+"values": [Vector3(-0.00305344, 3.67193, -3.89036), Vector3(-0.003, 3.837, -7.005)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -233,7 +225,7 @@ tracks/1/path = NodePath("../Node/Video:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8, 1),
+"times": PackedFloat32Array(1, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -245,7 +237,7 @@ tracks/2/path = NodePath("../World/Label3D:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.8, 1),
+"times": PackedFloat32Array(1, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -302,9 +294,14 @@ viewport_path = NodePath("Anim/Boot Video/SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_wlsky"]
 viewport_path = NodePath("Main Menu/Sprite3D/MainMenu")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6viy2"]
-render_priority = 0
-shader = ExtResource("10_6viy2")
+[sub_resource type="SystemFont" id="SystemFont_ht6vt"]
+font_names = PackedStringArray("Rocket Command")
+
+[sub_resource type="SystemFont" id="SystemFont_6viy2"]
+font_names = PackedStringArray("Rocket Command")
+
+[sub_resource type="SystemFont" id="SystemFont_4gws7"]
+font_names = PackedStringArray("Rocket Command")
 
 [node name="Main Menu" type="Node3D"]
 script = ExtResource("1_wfgb2")
@@ -323,7 +320,7 @@ autoplay = true
 loop = true
 
 [node name="Video" type="Sprite3D" parent="Node"]
-transform = Transform3D(0.142705, 0, 0, 0, 0.130604, 0.413707, 0, -0.0498626, 1.08362, 1.13249e-05, 3.83438, -8.58913)
+transform = Transform3D(0.142705, 0, 0, 0, 0.130604, 0.413707, 0, -0.0498626, 1.08362, 0, 3.83134, -8.58861)
 texture = SubResource("ViewportTexture_wfgb2")
 
 [node name="World" type="Node3D" parent="."]
@@ -423,7 +420,7 @@ font = SubResource("SystemFont_12kdf")
 font_size = 42
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Label3D"]
-transform = Transform3D(1, 0, 0, 0, 0.999979, -0.00647574, 0, 0.00647449, 0.999978, 0.0922054, 0.116302, 0.369171)
+transform = Transform3D(1, 0, 0, 0, 1, -1.86265e-09, 0, -2.86102e-06, 1, 0.0922054, -0.0947633, 0.373802)
 mesh = SubResource("TextMesh_bcalf")
 skeleton = NodePath("../../..")
 
@@ -473,7 +470,7 @@ text = "©2025 Juliann Publishing, Inc."
 label_settings = SubResource("LabelSettings_xwd2w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7, -7.55091)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7, -7.55388)
 mesh = SubResource("TextMesh_ht6vt")
 skeleton = NodePath("../..")
 
@@ -501,16 +498,44 @@ grow_vertical = 2
 stream = ExtResource("7_wlsky")
 
 [node name="Main Menu" type="Node3D" parent="."]
+script = ExtResource("8_ht6vt")
 
 [node name="Sprite3D" type="Sprite3D" parent="Main Menu"]
-transform = Transform3D(0.143, 0, 0, 0, 0.133591, 0.0510135, 0, -0.0510135, 0.133591, -0.0233658, 3.831, -8.589)
+transform = Transform3D(0.143, 0, 0, 0, 0.133591, 0.0510135, 0, -0.0510135, 0.133591, 0, 3.831, -8.589)
 texture = SubResource("ViewportTexture_wlsky")
 
 [node name="MainMenu" type="SubViewport" parent="Main Menu/Sprite3D"]
-transparent_bg = true
-size = Vector2i(1920, 1080)
 
-[node name="Control" parent="Main Menu/Sprite3D/MainMenu" instance=ExtResource("9_4gws7")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu/Sprite3D/MainMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.5
+offset_top = -148.0
+offset_right = 180.5
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="Main Menu/Sprite3D/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_ht6vt")
+theme_override_font_sizes/font_size = 64
+text = "Play"
+
+[node name="Settings" type="Button" parent="Main Menu/Sprite3D/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_6viy2")
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+
+[node name="Quit" type="Button" parent="Main Menu/Sprite3D/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_4gws7")
+theme_override_font_sizes/font_size = 64
+text = "Quit"
 
 [node name="3D Label" type="Node3D" parent="Main Menu"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.24203, -8.413)
@@ -520,22 +545,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.24203, -8.413)
 [node name="MainScreen Audio" type="AudioStreamPlayer3D" parent="Sound"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1979, -8.30963)
 stream = ExtResource("9_bcalf")
-volume_db = -5.0
 autoplay = true
 max_distance = 12.0
 emission_angle_enabled = true
 emission_angle_filter_attenuation_db = -12.3
 doppler_tracking = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_6viy2")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
-
-[node name="SubViewport" type="SubViewport" parent="ColorRect"]
-
 [connection signal="finished" from="Anim/Boot Video/SubViewport/VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="pressed" from="Main Menu/Sprite3D/MainMenu/VBoxContainer/Quit" to="Main Menu" method="_on_quit_pressed"]

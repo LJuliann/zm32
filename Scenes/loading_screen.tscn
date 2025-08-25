@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://chs7f7icacuby"]
+
+[ext_resource type="Script" uid="uid://d078av1are7gk" path="res://Scripts/MainMenu/loading_screen.gd" id="1_oobaa"]
+[ext_resource type="Texture2D" uid="uid://dctt6awvt0rcq" path="res://Assets/Texture/Map Thumbnail/Five Thumbnail.png" id="2_0t5xw"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oobaa")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_0t5xw")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -113.0
+offset_right = 960.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false

@@ -47,10 +47,10 @@ func _ready() -> void:
 	weapon1 = stats.get(0).duplicate()
 	weapons.append(weapon1)
 	
-	var weapon2 = weapons_stats.new()
+	#var weapon2 = weapons_stats.new()
 
-	weapon2 = stats.get(1).duplicate()
-	weapons.append(weapon2)
+	#weapon2 = stats.get(1).duplicate()
+	#weapons.append(weapon2)
 	current_weapon = weapons.get(0)
 
 	
@@ -88,7 +88,7 @@ func _shoot():
 	#			shape_cast_3d.get_collider(0).damage(current_weapon.damage)
 	#			Messanger.REMOVE_POINTS.emit(points_hit_made)
 	#
-		print(ray_cast_3d.get_collider())
+	#	print(ray_cast_3d.get_collider())
 		if ray_cast_3d.is_colliding():		
 			if ray_cast_3d.get_collider().has_method("damage"):
 				ray_cast_3d.get_collider().damage(current_weapon.damage)

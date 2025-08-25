@@ -1,0 +1,507 @@
+[gd_scene load_steps=27 format=3 uid="uid://cg54omsyghm1k"]
+
+[ext_resource type="Script" uid="uid://cc6y42xdw46oo" path="res://Scripts/MainMenu/main_menu.gd" id="1_2tvai"]
+[ext_resource type="Theme" uid="uid://jga6qpk3egwr" path="res://Assets/Theme/Main Menu.tres" id="2_2hen8"]
+[ext_resource type="Animation" uid="uid://cjnb5508bwst1" path="res://Animation/Main Menu/PlaySlide.res" id="2_ukseg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hen8"]
+
+[sub_resource type="SystemFont" id="SystemFont_kcure"]
+font_names = PackedStringArray("Rocket Command")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_12nw7"]
+font = SubResource("SystemFont_kcure")
+font_size = 90
+font_color = Color(0, 0.905882, 0.905882, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2hen8"]
+font = SubResource("SystemFont_kcure")
+font_size = 90
+
+[sub_resource type="Gradient" id="Gradient_irit8"]
+colors = PackedColorArray(0.552956, 0.552956, 0.552956, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5m750"]
+gradient = SubResource("Gradient_irit8")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_5m750"]
+font_names = PackedStringArray("DIN Next LT Arabic")
+font_weight = 999
+
+[sub_resource type="LabelSettings" id="LabelSettings_wpses"]
+font = SubResource("SystemFont_5m750")
+font_size = 32
+font_color = Color(0.965954, 0.850838, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_2hen8"]
+font_names = PackedStringArray("DIN Next LT Arabic")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_ukseg"]
+font_names = PackedStringArray("DIN Next LT Arabic")
+font_weight = 900
+
+[sub_resource type="LabelSettings" id="LabelSettings_mlgbp"]
+font = SubResource("SystemFont_ukseg")
+font_size = 32
+font_color = Color(0.964706, 0.85098, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_irit8"]
+font_names = PackedStringArray("DIN Next LT Arabic")
+subpixel_positioning = 0
+
+[sub_resource type="Animation" id="Animation_irit8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Play:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-398, -117.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Play:theme_override_fonts/font")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/Play:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5m750"]
+_data = {
+&"PlaySlide": ExtResource("2_ukseg"),
+&"RESET": SubResource("Animation_irit8")
+}
+
+[sub_resource type="SystemFont" id="SystemFont_iq7ea"]
+font_names = PackedStringArray("DIN Next LT Arabic")
+
+[sub_resource type="SystemFont" id="SystemFont_33r1d"]
+font_names = PackedStringArray("DIN Next LT Arabic")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_f8syv"]
+font_names = PackedStringArray("DIN Next LT Arabic")
+font_weight = 999
+subpixel_positioning = 0
+
+[sub_resource type="Animation" id="Animation_ukseg"]
+resource_name = "QuitSlide"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Quit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-398, 178), Vector2(-341.96, 178)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Quit:theme_override_fonts/font")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("SystemFont_33r1d"), SubResource("SystemFont_f8syv")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/Quit:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [64, 82]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/Quit:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.576471, 0.576471, 0.576471, 0.576471), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mlgbp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Quit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-398, 178)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Quit:theme_override_fonts/font")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/Quit:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_or1yl"]
+_data = {
+&"QuitSlide": SubResource("Animation_ukseg"),
+&"RESET": SubResource("Animation_mlgbp")
+}
+
+[sub_resource type="Animation" id="Animation_wpses"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Settings:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-398, 37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Settings:theme_override_fonts/font:font_weight")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [400]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/Settings:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/Settings:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.576471, 0.576471, 0.576471, 0.576471)]
+}
+
+[sub_resource type="Animation" id="Animation_5m750"]
+resource_name = "OptionsSlide"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Settings:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-398, 37), Vector2(-341.96, 37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Settings:theme_override_fonts/font:font_weight")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [400, 999]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/Settings:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [64, 82]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/Settings:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.576471, 0.576471, 0.576471, 0.576471), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpses"]
+_data = {
+&"OptionsSlide": SubResource("Animation_5m750"),
+&"RESET": SubResource("Animation_wpses")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2tvai")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2hen8")
+
+[node name="Aether" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -398.0
+offset_top = -318.0
+offset_right = 52.0
+offset_bottom = -223.0
+grow_vertical = 2
+text = "Game"
+label_settings = SubResource("LabelSettings_12nw7")
+
+[node name="Aether2" type="Label" parent="Panel"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -223.0
+offset_right = 388.0
+offset_bottom = -128.0
+grow_vertical = 2
+text = "Name"
+label_settings = SubResource("LabelSettings_2hen8")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Aether2"]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 692.0
+offset_bottom = 95.0
+texture = SubResource("GradientTexture2D_5m750")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -398.0
+offset_top = -118.0
+offset_right = -146.0
+offset_bottom = 271.0
+grow_vertical = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+theme_override_constants/separation = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 52.0
+offset_top = 415.0
+offset_right = 388.0
+offset_bottom = 463.0
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="Enter" type="Label" parent="Panel/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "ESC"
+label_settings = SubResource("LabelSettings_wpses")
+
+[node name="Back" type="Label" parent="Panel/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_2hen8")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="Enter" type="Label" parent="Panel/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Enter"
+label_settings = SubResource("LabelSettings_mlgbp")
+
+[node name="Select" type="Label" parent="Panel/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_irit8")
+theme_override_font_sizes/font_size = 32
+text = "Select"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_5m750")
+}
+
+[node name="Play" type="Button" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -398.0
+offset_top = -117.5
+offset_right = -209.0
+offset_bottom = 4.5
+grow_vertical = 2
+theme = ExtResource("2_2hen8")
+theme_override_colors/font_color = Color(0.576471, 0.576471, 0.576471, 0.576471)
+theme_override_font_sizes/font_size = 64
+button_mask = 0
+text = "PLAY"
+alignment = 0
+
+[node name="Settings" type="Button" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -398.0
+offset_top = 37.0
+offset_right = -74.0
+offset_bottom = 159.0
+grow_vertical = 2
+theme = ExtResource("2_2hen8")
+theme_override_colors/font_color = Color(0.576471, 0.576471, 0.576471, 0.576471)
+theme_override_fonts/font = SubResource("SystemFont_iq7ea")
+theme_override_font_sizes/font_size = 64
+button_mask = 0
+text = "OPTIONS"
+alignment = 0
+
+[node name="Quit" type="Button" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -398.0
+offset_top = 178.0
+offset_right = -225.0
+offset_bottom = 300.0
+grow_vertical = 2
+theme = ExtResource("2_2hen8")
+theme_override_colors/font_color = Color(0.576471, 0.576471, 0.576471, 0.576471)
+theme_override_font_sizes/font_size = 64
+button_mask = 0
+text = "QUIT"
+alignment = 0
+
+[node name="QuitPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_or1yl")
+}
+
+[node name="SettingsPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_wpses")
+}
+
+[connection signal="focus_entered" from="Panel/Play" to="." method="_on_play_focus_entered"]
+[connection signal="focus_exited" from="Panel/Play" to="." method="_on_play_focus_exited"]
+[connection signal="pressed" from="Panel/Play" to="." method="_on_play_pressed"]
+[connection signal="focus_entered" from="Panel/Settings" to="." method="_on_settings_focus_entered"]
+[connection signal="focus_exited" from="Panel/Settings" to="." method="_on_settings_focus_exited"]
+[connection signal="pressed" from="Panel/Settings" to="." method="_on_settings_pressed"]
+[connection signal="focus_entered" from="Panel/Quit" to="." method="_on_quit_focus_entered"]
+[connection signal="focus_exited" from="Panel/Quit" to="." method="_on_quit_focus_exited"]
+[connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]

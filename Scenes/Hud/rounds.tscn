@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://db3etajdmqf0e"]
+[gd_scene load_steps=8 format=3 uid="uid://db3etajdmqf0e"]
 
 [ext_resource type="Script" uid="uid://cui8pd1ibgbp8" path="res://Scripts/Hud/rounds.gd" id="1_de7dh"]
 
@@ -8,12 +8,73 @@
 font_italic = true
 subpixel_positioning = 0
 
-[sub_resource type="LabelSettings" id="LabelSettings_sahhv"]
+[sub_resource type="LabelSettings" id="LabelSettings_de7dh"]
 font = SubResource("SystemFont_2ytjt")
 font_size = 128
 font_color = Color(1, 0, 0, 1)
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_rg3sq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Round_Label:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Round_Label:label_settings:outline_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h2tfm"]
+resource_name = "Round_change_anim"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Round_Label:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.406994, 0.8, 0.988414, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Round_Label:label_settings:outline_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.406994, 0.8, 0.988414, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bytc7"]
+_data = {
+&"RESET": SubResource("Animation_rg3sq"),
+&"Round_change_anim": SubResource("Animation_h2tfm")
+}
 
 [node name="Rounds" type="Control"]
 layout_mode = 3
@@ -26,6 +87,7 @@ grow_vertical = 0
 script = ExtResource("1_de7dh")
 
 [node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0.915072, 1.07288e-06, 0.532339, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,5 +111,11 @@ offset_right = -73.0
 offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.305882, 1, 1)
 text = "1"
-label_settings = SubResource("LabelSettings_sahhv")
+label_settings = SubResource("LabelSettings_de7dh")
+
+[node name="Change_Round_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bytc7")
+}

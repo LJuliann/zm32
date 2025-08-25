@@ -1,25 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://g7pai4hgdl6r"]
+[gd_scene load_steps=12 format=3 uid="uid://g7pai4hgdl6r"]
 
 [ext_resource type="Script" uid="uid://b88cbm2e2g4n8" path="res://Scripts/Weapons System/gun.gd" id="1_7rnum"]
 [ext_resource type="Script" uid="uid://dkh0ueytm463o" path="res://Ressources/Weapons/weapons_stats.gd" id="2_ut0fn"]
 [ext_resource type="Resource" uid="uid://cjj5y6chuodwd" path="res://Ressources/Weapons/pistol.tres" id="3_n1r3s"]
 [ext_resource type="AudioStream" uid="uid://b6v40rmhoqgmt" path="res://Assets/SoundEffect/pistol shot.mp3" id="4_0upqn"]
-
-[sub_resource type="Resource" id="Resource_ut0fn"]
-script = ExtResource("2_ut0fn")
-name = "pistol2"
-damage = 10.0
-bulletSpeed = 0.0
-fireRate = 0.0
-delayBetweenShot = 0.0
-isAutomatic = true
-isHitScan = true
-clipSize = 8.0
-ammoSize = 16.0
-reloadSpeed = 1.0
-gunShotSound = ""
-gunReloadSound = ""
-metadata/_custom_type_script = "uid://dkh0ueytm463o"
 
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_7rnum"]
 
@@ -73,7 +57,7 @@ _data = {
 
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_7rnum")
-stats = Array[ExtResource("2_ut0fn")]([ExtResource("3_n1r3s"), SubResource("Resource_ut0fn")])
+stats = Array[ExtResource("2_ut0fn")]([ExtResource("3_n1r3s")])
 
 [node name="3d Model" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
