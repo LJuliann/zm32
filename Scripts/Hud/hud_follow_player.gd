@@ -8,5 +8,5 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	cirlce_fill.global_position = Player.global_position + Vector3(-1.2,1.2,0)

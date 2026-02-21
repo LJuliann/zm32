@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy5f12jj721k3"]
+[gd_scene format=3 uid="uid://cy5f12jj721k3"]
 
-[ext_resource type="Script" uid="uid://cc7ynpefb5np8" path="res://door.gd" id="1_w6aom"]
+[ext_resource type="Script" uid="uid://cc7ynpefb5np8" path="res://Scripts/door.gd" id="1_w6aom"]
 [ext_resource type="PackedScene" uid="uid://nat8oh24520l" path="res://Models/Debris/Door.blend" id="2_p0e35"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6ijf"]

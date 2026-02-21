@@ -1,9 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://cd268a6tpv4gs"]
+[gd_scene format=3 uid="uid://cd268a6tpv4gs"]
 
 [ext_resource type="Script" uid="uid://d05ldvfyohet1" path="res://Scripts/ennemies/ennemies.gd" id="1_4qw4g"]
 [ext_resource type="PackedScene" uid="uid://bfj1haeth151p" path="res://Scenes/Component/hit_box_component.tscn" id="2_hkvtc"]
 [ext_resource type="Script" uid="uid://u1bksjyvw7wp" path="res://Scripts/ennemies/health_component_ennemies.gd" id="3_hkvtc"]
 [ext_resource type="AudioStream" uid="uid://vve7g4fs7vot" path="res://Assets/SoundEffect/FootStepPlayer.mp3" id="4_kohhd"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="5_ntge2"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_46lfs"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="7_q438o"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="8_46lfs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rtywj"]
 
@@ -62,41 +66,42 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4qw4g"]
 
-[node name="Node3D" type="CharacterBody3D" node_paths=PackedStringArray("hitbox") groups=["enemy"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_46lfs"]
+radius = 0.8515861
+
+[node name="Node3D" type="CharacterBody3D" unique_id=1478983565 node_paths=PackedStringArray("hitbox") groups=["enemy"]]
 collision_layer = 33
 collision_mask = 33
 script = ExtResource("1_4qw4g")
 hitbox = NodePath("HitBoxComponent")
 
-[node name="Model" type="MeshInstance3D" parent="."]
+[node name="Model" type="MeshInstance3D" parent="." unique_id=1661335604]
 mesh = SubResource("CapsuleMesh_rtywj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model" unique_id=231724954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363733, -0.2)
 mesh = SubResource("CapsuleMesh_4qw4g")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Model/MeshInstance3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Model/MeshInstance3D" unique_id=66045616]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
 light_color = Color(1, 0, 0, 1)
 
-[node name="hit_anim" type="AnimationPlayer" parent="Model"]
-libraries = {
-&"": SubResource("AnimationLibrary_m070k")
-}
+[node name="hit_anim" type="AnimationPlayer" parent="Model" unique_id=99396868]
+libraries/ = SubResource("AnimationLibrary_m070k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=938448797]
 shape = SubResource("CapsuleShape3D_4qw4g")
 
-[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_hkvtc")]
+[node name="HitBoxComponent" parent="." unique_id=1171911727 node_paths=PackedStringArray("health_component") instance=ExtResource("2_hkvtc")]
 collision_layer = 33
 health_component = NodePath("../HealthCompoenentEnemies")
 
-[node name="HealthCompoenentEnemies" type="Node3D" parent="."]
+[node name="HealthCompoenentEnemies" type="Node3D" parent="." unique_id=171453487]
 script = ExtResource("3_hkvtc")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=156503131]
 
-[node name="FootStep" type="AudioStreamPlayer3D" parent="."]
+[node name="FootStep" type="AudioStreamPlayer3D" parent="." unique_id=1855096607]
 stream = ExtResource("4_kohhd")
 volume_db = -3.0
 unit_size = 5.5
@@ -106,9 +111,65 @@ bus = &"SoundEffect"
 emission_angle_enabled = true
 doppler_tracking = 2
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=2137195214]
 wait_time = 0.3
 autostart = true
 
+[node name="StateChart" type="Node" parent="." unique_id=1951118769]
+script = ExtResource("5_ntge2")
+track_in_editor = true
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="CompoundState" type="Node" parent="StateChart" unique_id=213284087]
+script = ExtResource("6_46lfs")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/CompoundState" unique_id=1412389950]
+script = ExtResource("7_q438o")
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState/Idle" unique_id=769158245]
+script = ExtResource("8_46lfs")
+to = NodePath("../../ChasePlayer")
+event = &"chase_player"
+delay_in_seconds = "0.0"
+
+[node name="ChasePlayer" type="Node" parent="StateChart/CompoundState" unique_id=2120241421]
+script = ExtResource("7_q438o")
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState/ChasePlayer" unique_id=1055182989]
+script = ExtResource("8_46lfs")
+to = NodePath("../../AttackPlayer")
+event = &"attack_player"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="AttackPlayer" type="Node" parent="StateChart/CompoundState" unique_id=1803001021]
+script = ExtResource("7_q438o")
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState/AttackPlayer" unique_id=873733235]
+script = ExtResource("8_46lfs")
+to = NodePath("../../ChasePlayer")
+event = &"chase_player"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=427237879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.24371839)
+collision_mask = 16
+collision_priority = 0.2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1613898971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.56495935)
+shape = SubResource("SphereShape3D_46lfs")
+
+[node name="attack_timer" type="Timer" parent="." unique_id=2013927916]
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="state_processing" from="StateChart/CompoundState/Idle" to="." method="_on_idle_state_processing"]
+[connection signal="state_processing" from="StateChart/CompoundState/ChasePlayer" to="." method="_on_chase_player_state_processing"]
+[connection signal="state_processing" from="StateChart/CompoundState/AttackPlayer" to="." method="_on_attack_player_state_processing"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]

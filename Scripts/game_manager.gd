@@ -1,6 +1,5 @@
 extends Node3D
 
-@onready var player: CharacterBody3D = %Player
 
 @export var max_enemies_per_hoard = 32 
 @export var max_enemies_per_round = 3
@@ -18,8 +17,8 @@ func _ready() -> void:
 #	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+#func _process(delta: float) -> void:
+#	pass
 
 
 

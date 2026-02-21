@@ -8,19 +8,23 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="zm32"
 run/main_scene="uid://yqan5pkvqngo"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 Messanger="*res://Scripts/Messanger.gd"
 AudioManager="*res://Scripts/Sound/audio_manager.gd"
-GameManager="*res://game_manager.gd"
+GameManager="*res://Scripts/game_manager.gd"
 
 [display]
 
@@ -29,7 +33,7 @@ window/size/viewport_height=1080
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [global_group]
 
@@ -97,6 +101,10 @@ test={
 
 3d_physics/layer_5="Player"
 3d_physics/layer_6="Ennemies"
+
+[physics]
+
+common/physics_interpolation=true
 
 [rendering]
 

@@ -12,10 +12,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
-func spawn_zombie(asd):
+func spawn_zombie(_asd):
 	if is_active:
 		if zomb_spawn != null:	
 			var zomb_spawner_random_number = (randi_range(0,zomb_spawn.size() - 1))

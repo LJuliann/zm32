@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+var health : float = 100.0
 var points = 500
 const SPEED = 5.0
 @export var is_movement_absolute = false
@@ -75,3 +76,7 @@ func cursor_animation():
 		Input.set_custom_mouse_cursor(Cursor2,Input.CURSOR_ARROW,Vector2(32,32))
 	else:
 		Input.set_custom_mouse_cursor(CURSOR,Input.CURSOR_ARROW,Vector2(32,32))	
+
+func get_damage(damage : float): 
+	health -= damage
+	print(health)

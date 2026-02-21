@@ -13,13 +13,14 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func update_clip_size(clipSize):
 	clip_size.text = str(int(clipSize))
-	if clipSize > 3: 
-		clip_size
+	if clipSize > 3:
+		pass 
+		#clip_size
 
 func update_ammo_size(ammoSize):
 	ammo_size.text = "/" + str(int(ammoSize))

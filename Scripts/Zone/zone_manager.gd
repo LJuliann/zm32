@@ -22,11 +22,11 @@ func _ready() -> void:
 	max_enemies_per_round = GameManager.max_enemies_per_round
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	check_end_round()
 	
 
-func _on_zone_body_entered(body: Node3D, extra_arg_0: String) -> void:
+func _on_zone_body_entered(_body: Node3D, extra_arg_0: String) -> void:
 	#print(extra_arg_0)
 	for i in zone:
 		if i.name == extra_arg_0:
